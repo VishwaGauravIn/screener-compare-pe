@@ -22,7 +22,7 @@ export function PEChart({ data }: { data: PEData[] }) {
       name: item.symbol,
       data: item.data.map(([timestamp, value]) => [
         timestamp,
-        Number.parseFloat(value.toFixed(2)),
+        Number.parseFloat((value ?? 0).toFixed(2)),
       ]),
       color: COLORS[index % COLORS.length],
     }));
@@ -67,7 +67,7 @@ export function PEChart({ data }: { data: PEData[] }) {
           this.points?.forEach((point) => {
             result += `<span style="color:${point.color}">${
               point.series.name
-            }: ${point.y.toFixed(2)}</span><br/>`;
+            }: ${(point.y ?? 0).toFixed(2)}</span><br/>`;
           });
           return result;
         },
